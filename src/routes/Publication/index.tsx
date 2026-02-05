@@ -38,7 +38,7 @@ const PublicationData = [
 function RouteComponent() {
   return (
     <div className="flex w-full flex-col gap-8 py-4">
-      <ItemGroup className="max-w-3xl gap-4">
+      <ItemGroup className="max-w-2xl gap-4">
         {PublicationData.map((pub, index) => (
           <Item variant="outline" size="sm" key={index}>
             <ItemMedia variant="image">
