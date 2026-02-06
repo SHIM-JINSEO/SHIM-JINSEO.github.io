@@ -7,9 +7,9 @@ export const Route = createRootRoute({
   component: () => (
     <div className="w-screen h-screen flex flex-col">
       <Navbar />
-      <div className="flex md:mx-100">
+      <div className="flex flex-col md:flex-row md:mx-100">
         <Aside />
-        <main className="flex-1 p-4">
+        <main className="flex-1 p-2">
           <Outlet />
         </main>
       </div>

@@ -13,7 +13,7 @@ import {
 
 export default function Navbar() {
   return (
-    <nav className="w-full h-auto border-b border-gray-400 flex items-center justify-between py-2 md:px-100">
+    <nav className="w-full h-auto border-b border-gray-400 flex items-center justify-between md:py-2 md:px-100">
       <h1 className="text-black md:text-xl font-bold mx-2">
         <Link to="/">Jinseo's Page</Link>
       </h1>
