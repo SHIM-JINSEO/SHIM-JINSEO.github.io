@@ -6,8 +6,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -24,7 +22,11 @@ export default function Navbar() {
         <h2 className="text-gray-600 px-4 mx-4">
           <Link to="/Publication">Publication</Link>
         </h2>
-        <h2 className="text-gray-600 px-4 mx-4">CV</h2>
+        <h2 className="text-gray-600 px-4 mx-4">
+          <a href="/cv.pdf" download>
+            CV
+          </a>
+        </h2>
         <h2 className="text-gray-600 px-4 mx-4">
           <Link to="/Contact">Contact</Link>
         </h2>
@@ -42,15 +44,32 @@ export default function Navbar() {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/Research" className="w-full">
+                  Research
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/Publication" className="w-full">
+                  Publication
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <a href="/cv.pdf" download className="w-full">
+                  CV
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/Contact" className="w-full">
+                  Contact
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/FunFacts" className="w-full">
+                  Fun Facts
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>GitHub</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
-            <DropdownMenuItem disabled>API</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
