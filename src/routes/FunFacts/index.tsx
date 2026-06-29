@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Smile, Coffee, Compass, Sparkles, BookOpen, Atom } from "lucide-react";
+import { Smile, Coffee, Compass, BookOpen, Atom } from "lucide-react";
 
 export const Route = createFileRoute("/FunFacts/")({
   component: RouteComponent,
