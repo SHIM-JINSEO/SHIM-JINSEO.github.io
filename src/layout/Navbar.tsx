@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { List } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,68 +10,88 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
+  const activeLinkStyle = {
+    className: "text-blue-500 font-semibold dark:text-blue-400",
+  };
+
+  const navLinks = [
+    { to: "/Research", label: "Research" },
+    { to: "/Publication", label: "Publication" },
+    { to: "/Contact", label: "Contact" },
+    { to: "/FunFacts", label: "Fun Facts" },
+  ];
+
   return (
-    <nav className="w-full h-auto border-b border-gray-400 flex items-center justify-between md:py-2 md:px-100">
-      <h1 className="text-black md:text-xl font-bold mx-2">
-        <Link to="/">Jinseo's Page</Link>
-      </h1>
-      <div className="hidden md:flex justify-around ">
-        <h2 className="text-gray-600 px-4 mx-4">
-          <Link to="/Research">Research</Link>
-        </h2>
-        <h2 className="text-gray-600 px-4 mx-4">
-          <Link to="/Publication">Publication</Link>
-        </h2>
-        <h2 className="text-gray-600 px-4 mx-4">
-          <a href="/cv.pdf" download>
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+        <h1 className="text-lg font-bold tracking-tight">
+          <Link 
+            to="/" 
+            activeProps={{ className: "text-foreground font-bold" }}
+            inactiveProps={{ className: "text-foreground/80 hover:text-foreground font-semibold" }}
+            className="transition-colors duration-200"
+          >
+            Jinseo Shim
+          </Link>
+        </h1>
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              activeProps={activeLinkStyle}
+              inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
+              className="text-sm font-medium transition-colors duration-200"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href="/cv.pdf"
+            download
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+          >
             CV
           </a>
-        </h2>
-        <h2 className="text-gray-600 px-4 mx-4">
-          <Link to="/Contact">Contact</Link>
-        </h2>
-        <h2 className="text-gray-600 px-4 mx-4">
-          <Link to="/FunFacts">Fun Facts</Link>
-        </h2>
-      </div>
+        </div>
 
-      <div className="md:hidden">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <List />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Link to="/Research" className="w-full">
-                  Research
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link to="/Publication" className="w-full">
-                  Publication
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <a href="/cv.pdf" download className="w-full">
-                  CV
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link to="/Contact" className="w-full">
-                  Contact
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link to="/FunFacts" className="w-full">
-                  Fun Facts
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuGroup>
+                {navLinks.map((link) => (
+                  <DropdownMenuItem key={link.to} asChild>
+                    <Link
+                      to={link.to}
+                      activeProps={activeLinkStyle}
+                      inactiveProps={{ className: "text-foreground" }}
+                      className="w-full cursor-pointer"
+                    >
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuItem asChild>
+                  <a
+                    href="/cv.pdf"
+                    download
+                    className="w-full cursor-pointer text-foreground"
+                  >
+                    CV
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </nav>
   );
